@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Note } from "./components/Note";
+import { NotesList } from "./components/NotesList";
 
-function App() {
+const App = () => {
+  const notes = [
+    {
+      id: Math.random(),
+      title: "1st Note",
+      text: "This is my 1st Note",
+      date: new Date(),
+    },
+    {
+      id: Math.random(),
+      title: "2nd Note",
+      text: "This is my 2nd Note",
+      date: new Date(),
+    },
+    {
+      id: Math.random(),
+      title: "3rd Note",
+      text: "This is my 3rd Note",
+      date: new Date(),
+    },
+    {
+      id: Math.random(),
+      title: "4th Note",
+      text: "This is my 4th Note",
+      date: new Date(),
+    },
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <NotesList notes={notes} />
     </div>
   );
-}
+};
 
 export default App;
