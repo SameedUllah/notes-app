@@ -1,4 +1,4 @@
-const AddNote = () => {
+export const AddNote = () => {
   return (
     <div className="note new">
       <textarea
@@ -7,11 +7,8 @@ const AddNote = () => {
         placeholder="Type to add a note..."
       ></textarea>
       <div className="note-footer">
-        <small>Remaining</small>
         <button className="save">Save</button>
       </div>
     </div>
   );
 };
-
-export default AddNote;
