@@ -1,36 +1,51 @@
-import { Note } from "./components/Note";
+import { useState } from "react";
+
 import { NotesList } from "./components/NotesList";
 
 const App = () => {
-  const notes = [
+  const date = new Date();
+
+  const [notes, setNotes] = useState([
     {
       id: Math.random(),
       title: "1st Note",
-      text: "This is my 1st Note",
-      date: new Date(),
+      content: "This is my 1st Note",
+      date: date.toLocaleString(),
     },
     {
       id: Math.random(),
       title: "2nd Note",
-      text: "This is my 2nd Note",
-      date: new Date(),
+      content: "This is my 2nd Note",
+      date: date.toLocaleString(),
     },
     {
       id: Math.random(),
       title: "3rd Note",
-      text: "This is my 3rd Note",
-      date: new Date(),
+      content: "This is my 3rd Note",
+      date: date.toLocaleString(),
     },
     {
       id: Math.random(),
       title: "4th Note",
-      text: "This is my 4th Note",
-      date: new Date(),
+      content: "This is my 4th Note",
+      date: date.toLocaleString(),
     },
-  ];
+  ]);
+
+  const addNote = (note: any) => {
+    const newNote = {
+      id: Math.random(),
+      title: note.title,
+      content: note.content,
+      date: date.toLocaleDateString(),
+    };
+    const newNotes: any = [...notes, newNote];
+    setNotes(newNotes);
+  };
+
   return (
     <div className="container">
-      <NotesList notes={notes} />
+      <NotesList notes={notes} handleAddNote={addNote} />
     </div>
   );
 };

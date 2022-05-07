@@ -3,26 +3,25 @@ import { MdDeleteForever } from "react-icons/md";
 interface NoteProps {
   id: number;
   title: string;
-  text: string;
+  content: string;
   date: string;
-  handleDeleteNote: (id: number) => number;
+  handleDeleteNote(id: number): number;
 }
 
 export const Note = ({
   id,
   title,
-  text,
-  date,
+  content,
   handleDeleteNote,
 }: NoteProps) => {
-  const dateStr = new Date(date).toString();
+  const dateStr = new Date();
 
   return (
     <div className="note">
       <span>{title}</span>
-      <span>{text}</span>
+      <span>{content}</span>
       <div className="note-footer">
-        {dateStr}
+        {dateStr.toLocaleString()}
         <MdDeleteForever
           onClick={() => handleDeleteNote(id)}
           className="delete-icon"

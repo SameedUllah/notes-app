@@ -43,11 +43,22 @@
 	background-color: aquamarine;
 }
 
+input {
+	border: none;
+	resize: none;
+	background-color: aquamarine;
+}
+
+input:focus {
+	outline: none;
+}
+
 textarea {
 	border: none;
 	resize: none;
 	background-color: aquamarine;
 }
+
 
 textarea:focus {
 	outline: none;
@@ -68,4 +79,3 @@ textarea:focus {
 	background-color: #ededed;
 	cursor: pointer;
 }
-
