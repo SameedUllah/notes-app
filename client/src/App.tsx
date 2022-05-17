@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { IAddNote } from "./interfaces/Note";
 
 import { NotesList } from "./components/NotesList";
+import { Search } from "./components/Search";
 
 const App = () => {
   const date = new Date();
@@ -32,7 +34,9 @@ const App = () => {
     },
   ]);
 
-  const addNote = (note: any) => {
+  const [search, setSearch] = "";
+
+  const addNote = (note: IAddNote): void => {
     const newNote = {
       id: Math.random(),
       title: note.title,
@@ -48,15 +52,33 @@ const App = () => {
     setNotes(newNotes);
   };
 
+  // const note1: <NoteProps> = {
+  //   note: {},
+  //   handleDeleteNote: HandleDeleteNote,
+  // }
+
+  // const note2: Required<Omit<Partial<INote>, 'id'>> = {
+
+  // }
+
   return (
     <div className="container">
+      <Search handleSearchNote={setSearch} />
       <NotesList
-        notes={notes}
+        notes={notes.filter((note) => {
+          note.content.includes(search);
+        })}
         handleAddNote={addNote}
         handleDeleteNote={deleteNote}
       />
     </div>
   );
+
+  // return (
+  //   <div className="container">
+  //     <button onClick={handleClick}>Create note</button>
+  //   </div>
+  // )
 };
 
 export default App;

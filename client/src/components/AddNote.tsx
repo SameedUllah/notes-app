@@ -1,7 +1,17 @@
 import { useState } from "react";
+import { IAddNote } from "../interfaces/Note";
 
-export const AddNote = ({ handleAddNote }: any) => {
-  const [note, setNote] = useState({
+import { NoteProps } from "./Note";
+
+export interface AddNoteProps
+  extends Required<Pick<NoteProps, "handleAddNote">> {}
+
+// export interface AddNoteProps {
+//   handleAddNote: HandleAddNote
+// }
+
+export const AddNote = ({ handleAddNote }: AddNoteProps): JSX.Element => {
+  const [note, setNote] = useState<IAddNote>({
     title: "",
     content: "",
   });
