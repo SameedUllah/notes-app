@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IAddNote, INote } from "./interfaces/Note";
 
 import { NotesList } from "./components/NotesList";
+import { Search } from "./components/Search";
 
 const date = new Date();
 
@@ -33,10 +34,16 @@ const App = () => {
     setNotes(newNotes);
   };
 
+  const [search, setSearch] = "";
+
   return (
     <div className="container">
+      <Search handleSearchNote={setSearch} />
       <NotesList
-        notes={notes}
+        notes={notes.filter((note) => {
+          note.content.includes(search);
+          return notes;
+        })}
         handleAddNote={addNote}
         handleDeleteNote={deleteNote}
       />
