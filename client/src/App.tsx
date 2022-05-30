@@ -1,40 +1,21 @@
 import { useState } from "react";
-import { IAddNote } from "./interfaces/Note";
+import { IAddNote, INote } from "./interfaces/Note";
 
 import { NotesList } from "./components/NotesList";
-import { Search } from "./components/Search";
+
+const date = new Date();
+
+const defaultNotes = new Array(4).fill({}).map<INote>((_, i) => {
+  return {
+    id: i,
+    title: `Note ${i + 1}`,
+    content: `This is note number ${i + 1}`,
+    date: date.toString(),
+  };
+});
 
 const App = () => {
-  const date = new Date();
-
-  const [notes, setNotes] = useState([
-    {
-      id: Math.random(),
-      title: "1st Note",
-      content: "This is my 1st Note",
-      date: date.toLocaleString(),
-    },
-    {
-      id: Math.random(),
-      title: "2nd Note",
-      content: "This is my 2nd Note",
-      date: date.toLocaleString(),
-    },
-    {
-      id: Math.random(),
-      title: "3rd Note",
-      content: "This is my 3rd Note",
-      date: date.toLocaleString(),
-    },
-    {
-      id: Math.random(),
-      title: "4th Note",
-      content: "This is my 4th Note",
-      date: date.toLocaleString(),
-    },
-  ]);
-
-  const [search, setSearch] = "";
+  const [notes, setNotes] = useState(defaultNotes);
 
   const addNote = (note: IAddNote): void => {
     const newNote = {
@@ -52,33 +33,15 @@ const App = () => {
     setNotes(newNotes);
   };
 
-  // const note1: <NoteProps> = {
-  //   note: {},
-  //   handleDeleteNote: HandleDeleteNote,
-  // }
-
-  // const note2: Required<Omit<Partial<INote>, 'id'>> = {
-
-  // }
-
   return (
     <div className="container">
-      <Search handleSearchNote={setSearch} />
       <NotesList
-        notes={notes.filter((note) => {
-          note.content.includes(search);
-        })}
+        notes={notes}
         handleAddNote={addNote}
         handleDeleteNote={deleteNote}
       />
     </div>
   );
-
-  // return (
-  //   <div className="container">
-  //     <button onClick={handleClick}>Create note</button>
-  //   </div>
-  // )
 };
 
 export default App;
