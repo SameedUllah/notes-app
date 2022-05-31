@@ -34,14 +34,14 @@ const App = () => {
     setNotes(newNotes);
   };
 
-  const [search, setSearch] = "";
+  const [search, setSearch] = useState("");
 
   return (
     <div className="container">
       <Search handleSearchNote={setSearch} />
       <NotesList
         notes={notes.filter((note) => {
-          note.content.includes(search);
+          note.content.toLowerCase().includes(search);
           return notes;
         })}
         handleAddNote={addNote}

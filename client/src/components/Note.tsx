@@ -3,11 +3,12 @@ import { IAddNote, INote } from "../interfaces/Note";
 
 export type HandleDeleteNote = (id: number) => void;
 export type HandleAddNote = (note: IAddNote) => void;
-
+export type HandleSearchNote = (content: string) => void;
 export interface NoteProps {
   note: INote;
   handleDeleteNote: HandleDeleteNote;
   handleAddNote?: HandleAddNote;
+  handleSearchNote?: HandleSearchNote;
 }
 
 export const Note = ({
