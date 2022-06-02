@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { IAddNote, INote } from "./interfaces/Note";
 
+import { IAddNote, INote } from "./interfaces/Note";
 import { NotesList } from "./components/NotesList";
 import { Search } from "./components/Search";
 
@@ -34,15 +34,17 @@ const App = () => {
     setNotes(newNotes);
   };
 
-  const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
 
   return (
     <div className="container">
-      <Search handleSearchNote={setSearch} />
+      <Search handleSearchNote={setSearchText} />
       <NotesList
         notes={notes.filter((note) => {
-          note.content.toLowerCase().includes(search);
-          return notes;
+          return (
+            note.content.toLowerCase().includes(searchText.toLowerCase()) ||
+            note.title.toLowerCase().includes(searchText.toLowerCase())
+          );
         })}
         handleAddNote={addNote}
         handleDeleteNote={deleteNote}

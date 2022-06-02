@@ -1,7 +1,9 @@
 import { MdSearch } from "react-icons/md";
+
 import { NoteProps } from "./Note";
 
-interface SearchNoteProps extends Required<Pick<NoteProps, "handleSearchNote">> {}
+interface SearchNoteProps
+  extends Required<Pick<NoteProps, "handleSearchNote">> {}
 
 export const Search = ({ handleSearchNote }: SearchNoteProps): JSX.Element => {
   return (
