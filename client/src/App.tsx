@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { IAddNote, INote } from "./interfaces/Note";
 import { NotesList } from "./components/NotesList";
@@ -28,6 +28,19 @@ const App = () => {
     const newNotes: any = [...notes, newNote];
     setNotes(newNotes);
   };
+
+  useEffect(() => {
+    const savedNotes = JSON.parse(
+      localStorage.getItem("react-notes-app-data")!
+    );
+    if (savedNotes) {
+      setNotes(savedNotes);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("react-notes-app-data", JSON.stringify(notes));
+  }, [notes]);
 
   const deleteNote = (id: number) => {
     const newNotes = notes.filter((note) => note.id !== id);
